@@ -1,30 +1,27 @@
 package sample;
 
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
+import java.text.NumberFormat;
 
 
 public class Controller
 {
+    //Fields
     private double result;
+    private double firstNumber;
+    private double secondNumber;
+
     private char operator;
     private String first;
     private String second;
-
-    public Controller()
-    {
-        result = 0;
-        operator = ' ';
-        first = "";
-        second = "";
-    }
-
+    private NumberFormat numberFormat;
 
 
     @FXML
@@ -70,63 +67,84 @@ public class Controller
     @FXML
     private TextField resultTxt;
 
-    public void clickButton(ActionEvent event)
+
+    //Constructor
+    public Controller()
     {
-        if(event.getSource() == zeroButton)
+        result = 0;
+        firstNumber = 0.0;
+        secondNumber = 0.0;
+
+        numberFormat = NumberFormat.getInstance();
+        numberFormat.setMaximumFractionDigits(10);
+
+        first = "";
+        second = "";
+
+        operator = ' ';
+    }
+
+
+    public void keyEvent(KeyEvent event)
+    {
+        if (event.getCode() == KeyCode.NUMPAD0)
         {
-            first += "0";
-            resultTxt.setText(first);
+            if (!first.equals(""))
+            {
+                first += "0";
+                resultTxt.setText(first);
+            }
         }
-        else if(event.getSource() == oneButton)
+        else if (event.getCode() == KeyCode.NUMPAD1)
         {
             first += "1";
             resultTxt.setText(first);
         }
-        else if(event.getSource() == twoButton)
+        else if (event.getCode() == KeyCode.NUMPAD2)
         {
             first += "2";
             resultTxt.setText(first);
         }
-        else if(event.getSource() == threeButton)
+        else if (event.getCode() == KeyCode.NUMPAD3)
         {
             first += "3";
             resultTxt.setText(first);
         }
-        else if(event.getSource() == fourButton)
+        else if (event.getCode() == KeyCode.NUMPAD4)
         {
             first += "4";
             resultTxt.setText(first);
         }
-        else if(event.getSource() == fiveButton)
+        else if (event.getCode() == KeyCode.NUMPAD5)
         {
             first += "5";
             resultTxt.setText(first);
         }
-        else if(event.getSource() == sixButton)
+        else if (event.getCode() == KeyCode.NUMPAD6)
         {
             first += "6";
             resultTxt.setText(first);
         }
-        else if(event.getSource() == sevenButton)
+        else if (event.getCode() == KeyCode.NUMPAD7)
         {
-            first += "0";
+            first += "7";
             resultTxt.setText(first);
         }
-        else if(event.getSource() == eightButton)
+        else if (event.getCode() == KeyCode.NUMPAD8)
         {
             first += "8";
             resultTxt.setText(first);
         }
-        else if(event.getSource() == nineButton)
+        else if (event.getCode() == KeyCode.NUMPAD9)
         {
             first += "9";
             resultTxt.setText(first);
         }
-        else if(event.getSource() == dotButton)
+        else if (event.getCode() == KeyCode.DECIMAL)
         {
-            if(!first.contains("."))
+            if (!first.contains("."))
             {
-                if(first.equals(""))
+                if (first.equals(""))
                 {
                     first += "0.";
                     resultTxt.setText(first);
@@ -138,115 +156,256 @@ public class Controller
                 }
             }
         }
-        else if(event.getSource() == plusButton)
+        else if (event.getCode() == KeyCode.ADD)
         {
-            if(!first.equals(""))
-            {
-                second = first;
-                first = "";
-                operator = '+';
-                resultTxt.setText(first + " + ");
-            }
-            else if(!second.equals(""))
-            {
-                operator = '-';
-            }
+            chekEquals();
+            operator = '+';
         }
-        else if(event.getSource() == minesButton)
+        else if (event.getCode() == KeyCode.SUBTRACT)
         {
-            if(!first.equals(""))
-            {
-                second = first;
-                first = "";
-                operator = '-';
-                resultTxt.setText(first + " - ");
-            }
-            else if(!second.equals(""))
-            {
-                operator = '-';
-            }
+            chekEquals();
+            operator = '-';
         }
-        else if(event.getSource() == multiButton)
+        else if (event.getCode() == KeyCode.MULTIPLY)
         {
-            if(!first.equals(""))
-            {
-                second = first;
-                first = "";
-                operator = '*';
-                resultTxt.setText(first + " x ");
-            }
-            else if(!second.equals(""))
-            {
-                operator = '-';
-            }
+            chekEquals();
+            operator = '*';
         }
-        else if(event.getSource() == divideButton)
+        else if (event.getCode() == KeyCode.DIVIDE)
         {
-            if(!first.equals(""))
-            {
-                second = first;
-                first = "";
-                operator = '/';
-                resultTxt.setText(first + " ÷ ");
-            }
-            else if(!second.equals(""))
-            {
-                operator = '-';
-            }
+            chekEquals();
+            operator = '/';
         }
-        else if(event.getSource() == PiButton)
-        {
-            first = "3.1415926";
-        }
-        else if(event.getSource() == EButton)
-        {
-            first = "2.7182818";
-        }
-        else if(event.getSource() == equalButton)
-        {
-            if(!first.equals("") && !second.equals(""))
-            {
-                if(operator == '+')
-                {
-                    result = Double.parseDouble(second) + Double.parseDouble(first);
-                }
-                else if(operator == '-')
-                {
-                    result = Double.parseDouble(second) - Double.parseDouble(first);
-                }
-                else if(operator == '*')
-                {
-                    result = Double.parseDouble(second) * Double.parseDouble(first);
-                }
-                else
-                {
-                    try
-                    {
-                        result = Double.parseDouble(second) + Double.parseDouble(first);
-                    }
-                    catch(Exception e)
-                    {
-                        result = 0;
-                        System.out.println("Divide by zero");
-                    }
-                }
-            }
-        }
-        else if(event.getSource() == clearButton)
+        else if (event.getCode() == KeyCode.DELETE)
         {
             first = "";
             second = "";
             operator = ' ';
             result = 0;
+            firstNumber = 0.0;
+            secondNumber = 0.0;
+            resultTxt.setText("");
         }
-        else if(event.getSource() == xButton)
+        else if (event.getCode() == KeyCode.BACK_SPACE)
         {
-            if(!first.equals(""))
+            if (!first.equals(""))
+            {
+                first = first.substring(0, first.length() - 1);
+            }
+        }
+        else if (event.getCode() == KeyCode.ENTER)
+        {
+            if(second.equals(""))
+                second = "0";
+            secondNumber = Double.parseDouble(second);
+            if (operator == '+')
+            {
+                result = firstNumber + Double.parseDouble(first);
+            }
+            else if (operator == '-')
+            {
+                result = firstNumber - Double.parseDouble(first);
+            }
+            else if (operator == '*')
+            {
+                result = firstNumber * Double.parseDouble(first);
+            }
+            else if (operator == '/')
+            {
+                try
+                {
+                    result = firstNumber / Double.parseDouble(first);
+                } catch (Exception e)
+                {
+                    result = 0;
+                    System.out.println("Divide by zero");
+                }
+            }
+        }
+    }
+
+    public void clickButton(ActionEvent event)
+    {
+        if (event.getSource() == zeroButton)
+        {
+            if (!first.equals(""))
+            {
+                first += "0";
+                resultTxt.setText(first);
+            }
+        }
+        else if (event.getSource() == oneButton)
+        {
+            first += "1";
+            resultTxt.setText(first);
+        }
+        else if (event.getSource() == twoButton)
+        {
+            first += "2";
+            resultTxt.setText(first);
+        }
+        else if (event.getSource() == threeButton)
+        {
+            first += "3";
+            resultTxt.setText(first);
+        }
+        else if (event.getSource() == fourButton)
+        {
+            first += "4";
+            resultTxt.setText(first);
+        }
+        else if (event.getSource() == fiveButton)
+        {
+            first += "5";
+            resultTxt.setText(first);
+        }
+        else if (event.getSource() == sixButton)
+        {
+            first += "6";
+            resultTxt.setText(first);
+        }
+        else if (event.getSource() == sevenButton)
+        {
+            first += "7";
+            resultTxt.setText(first);
+        }
+        else if (event.getSource() == eightButton)
+        {
+            first += "8";
+            resultTxt.setText(first);
+        }
+        else if (event.getSource() == nineButton)
+        {
+            first += "9";
+            resultTxt.setText(first);
+        }
+        else if (event.getSource() == dotButton)
+        {
+            if (!first.contains("."))
+            {
+                if (first.equals(""))
+                {
+                    first += "0.";
+                    resultTxt.setText(first);
+                }
+                else
+                {
+                    first += ".";
+                    resultTxt.setText(first);
+                }
+            }
+        }
+        else if (event.getSource() == plusButton)
+        {
+            chekEquals();
+            operator = '+';
+        }
+        else if (event.getSource() == minesButton)
+        {
+            chekEquals();
+            operator = '-';
+        }
+        else if (event.getSource() == multiButton)
+        {
+            chekEquals();
+            operator = '*';
+        }
+        else if (event.getSource() == divideButton)
+        {
+            chekEquals();
+            operator = '/';
+        }
+        else if (event.getSource() == PiButton)
+        {
+            first = "3.1415926";
+        }
+        else if (event.getSource() == EButton)
+        {
+            if (!first.equals(""))
+            {
+                first = first.substring(0, first.length() - 1);
+            }
+        }
+        else if (event.getSource() == equalButton)
+        {
+            secondNumber = Double.parseDouble(second);
+            if (operator == '+')
+            {
+                result = firstNumber + Double.parseDouble(first);
+            }
+            else if (operator == '-')
+            {
+                result = firstNumber - Double.parseDouble(first);
+            }
+            else if (operator == '*')
+            {
+                result = firstNumber * Double.parseDouble(first);
+            }
+            else if (operator == '/')
+            {
+                try
+                {
+                    result = firstNumber / Double.parseDouble(first);
+                } catch (Exception e)
+                {
+                    result = 0;
+                    System.out.println("Divide by zero");
+                }
+            }
+            else
+            {
+                result = Double.parseDouble(first);
+            }
+
+            resultTxt.setText(numberFormat.format(result) + "");
+
+            result = 0;
+            firstNumber = 0.0;
+            secondNumber = 0.0;
+
+        }
+
+        else if (event.getSource() == clearButton)
+        {
+            first = "";
+            second = "";
+            operator = ' ';
+            result = 0;
+            firstNumber = 0.0;
+            secondNumber = 0.0;
+            resultTxt.setText("");
+        }
+
+        else if (event.getSource() == xButton)
+        {
+            if (!first.equals(""))
             {
                 double curr = -Double.parseDouble(first);
 
                 first = Double.toString(curr);
             }
+        }
+    }
+
+    private void chekEquals()
+    {
+        if (!first.equals(""))
+        {
+            switch (operator)
+            {
+                case '+' -> firstNumber = firstNumber + Double.parseDouble(first);
+                case '-' -> firstNumber = firstNumber - Double.parseDouble(first);
+                case '*' -> firstNumber = firstNumber * Double.parseDouble(first);
+                case '/' -> firstNumber = firstNumber / Double.parseDouble(first);
+                default -> firstNumber = Double.parseDouble(first);
+            }
+            second = first;
+            first = "";
+            resultTxt.setText("");
+        }
+        else
+        {
+            first = "0";
         }
     }
 }

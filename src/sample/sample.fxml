@@ -52,12 +52,12 @@
                   <Font name="Tw Cen MT Condensed Extra Bold" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="multiButton" blendMode="SRC_ATOP" contentDisplay="TOP" graphicTextGap="1.0" layoutX="238.0" layoutY="312.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickButton" opacity="0.4" prefHeight="50.0" prefWidth="50.0" text="*">
+            <Button fx:id="multiButton" blendMode="SRC_ATOP" contentDisplay="TOP" graphicTextGap="1.0" layoutX="238.0" layoutY="312.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickButton" opacity="0.4" prefHeight="50.0" prefWidth="50.0" text="X">
                <font>
                   <Font name="Tw Cen MT Condensed Extra Bold" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="EButton" blendMode="SRC_ATOP" contentDisplay="TOP" graphicTextGap="1.0" layoutX="168.0" layoutY="134.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickButton" opacity="0.4" prefHeight="50.0" prefWidth="50.0" text="e">
+            <Button fx:id="EButton" blendMode="SRC_ATOP" contentDisplay="TOP" graphicTextGap="1.0" layoutX="168.0" layoutY="134.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickButton" opacity="0.4" prefHeight="50.0" prefWidth="50.0" text="D">
                <font>
                   <Font name="Tw Cen MT Condensed Extra Bold" size="19.0" />
                </font>
@@ -112,7 +112,7 @@
                   <Font name="Tw Cen MT Condensed Extra Bold" size="19.0" />
                </font>
             </Button>
-            <Button fx:id="clearButton" blendMode="SRC_ATOP" contentDisplay="TOP" graphicTextGap="1.0" layoutX="237.0" layoutY="134.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickButton" opacity="0.4" prefHeight="50.0" prefWidth="50.0" text="AC">
+            <Button fx:id="clearButton" blendMode="SRC_ATOP" contentDisplay="TOP" graphicTextGap="1.0" layoutX="237.0" layoutY="134.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#clickButton" opacity="0.4" prefHeight="50.0" prefWidth="50.0" text="CE">
                <font>
                   <Font name="Tw Cen MT Condensed Extra Bold" size="19.0" />
                </font>
